@@ -3,6 +3,7 @@
 Neste trabalho eu criarei uma aplicação desktop de gerenciamento de estoque. Essa aplicação deverá permitir o cadastro e a listagem de funcionários, clientes e mercadorias, bem como visualizar os dados cadastrados e a listagem de estoque com seu valor de compra e de venda. A aplicação será programada na linguagem Java(fim acadêmico/professor obrigou kkkkk), e sua interface gráfica deve ser construída utilizando os componentes gráficos da API Swing.
 
 Requisitos da Aplicação
+
 A aplicação a ser desenvolvida deve permitir a execução das seguintes ações através de sua interface gráfica:
 
 Autenticar um funcionário por meio de usuário e senha;
