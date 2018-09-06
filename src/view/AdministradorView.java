@@ -8,7 +8,7 @@ import model.bean.Produto;
 import model.dao.AdministradorDao;
 
 /**
- * @author Gilberto Toledo
+ * @author viniciusdias
  */
 public class AdministradorView extends javax.swing.JFrame {
     ArrayList<Administrador> ListaAdm;
