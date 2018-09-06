@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import model.bean.Cliente;
 import model.bean.Administrador;
 import model.bean.Produto;
+import model.dao.AdministradorDao;
 
 /**
  * @author Gilberto Toledo
@@ -1050,23 +1051,44 @@ public class AdministradorView extends javax.swing.JFrame {
 
     private void btn_adm_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_salvarActionPerformed
 
-        Administrador F = new Administrador();
-        F.setCpf(Long.parseLong(c_adm_cpf.getText()));
-        F.setNome(c_adm_nome.getText());
-        F.setCargo(c_adm_cargo.getText());
-        F.setRg(Long.parseLong(c_adm_rg.getText()));
-        F.setDataNasc(c_adm_nasc.getText());
-        F.setTelefone(Long.parseLong(c_adm_tel.getText()));
-        F.setEndereco(c_adm_ende.getText());
-        F.setLogin(c_adm_nasc.getText());
-        F.setSenha(c_adm_tel.getText());
-        F.setSalario(Long.parseLong(c_adm_sal.getText()));
-
-        ListaAdm.add(F);
-        LoadTableAdm();
+        
+        Administrador a = new Administrador();
+        AdministradorDao dao = new AdministradorDao();
+        a.setCpf(Long.parseLong(c_adm_cpf.getText()));
+        a.setNome(c_adm_nome.getText());
+        a.setCargo(c_adm_cargo.getText());
+        a.setRg(Long.parseLong(c_adm_rg.getText()));
+        a.setDataNasc(c_adm_nasc.getText());
+        a.setTelefone(Long.parseLong(c_adm_tel.getText()));
+        a.setEndereco(c_adm_ende.getText());
+        a.setLogin(c_adm_nasc.getText());
+        a.setSenha(c_adm_tel.getText());
+        a.setSalario(Long.parseLong(c_adm_sal.getText()));
+        
+        dao.create(a);
+        
         modoAdm = "Navegar";
         ManipulaInterfaceAdm();
         limpaTextoAdm();
+        
+        
+//        Administrador F = new Administrador();
+//        F.setCpf(Long.parseLong(c_adm_cpf.getText()));
+//        F.setNome(c_adm_nome.getText());
+//        F.setCargo(c_adm_cargo.getText());
+//        F.setRg(Long.parseLong(c_adm_rg.getText()));
+//        F.setDataNasc(c_adm_nasc.getText());
+//        F.setTelefone(Long.parseLong(c_adm_tel.getText()));
+//        F.setEndereco(c_adm_ende.getText());
+//        F.setLogin(c_adm_nasc.getText());
+//        F.setSenha(c_adm_tel.getText());
+//        F.setSalario(Long.parseLong(c_adm_sal.getText()));
+//
+//        ListaAdm.add(F);
+//        LoadTableAdm();
+//        modoAdm = "Navegar";
+//        ManipulaInterfaceAdm();
+//        limpaTextoAdm();
     }//GEN-LAST:event_btn_adm_salvarActionPerformed
 
     private void btn_prod_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_cancelarActionPerformed
