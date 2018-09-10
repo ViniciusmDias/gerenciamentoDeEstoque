@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.bean.Administrador;
 import model.bean.Produto;
 
 /**
@@ -37,7 +36,7 @@ public class ProdutoDao {
             JOptionPane.showMessageDialog(null, "Salvo com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar "+ex);
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
             
