@@ -2,58 +2,56 @@ package view;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.bean.Cliente;
-import model.bean.Administrador;
 import model.bean.Produto;
-import model.dao.AdministradorDao;
+import model.bean.Produto;
+import model.dao.ProdutoDao;
 
 /**
  * @author viniciusdias
  */
-public class listarFunc extends javax.swing.JFrame {
-    ArrayList<Administrador> ListaAdm;
-    String modoAdm;
+public class listarProdutosView extends javax.swing.JFrame {
+    String modoProd; 
     
-    public void LoadTableAdm(){
-        DefaultTableModel modeloAdm = new DefaultTableModel(new Object[]{"Cpf","Nome",
-                                        "Cargo", "Rg","DataNasc","Telefone",
-                                        "Endereco", "Login", "Senha", "Salario"},0);
-            
-        for(int i=0;i<ListaAdm.size();i++){
-            Object linha[] = new Object[]{ListaAdm.get(i).getCpf(),
-                                          ListaAdm.get(i).getNome(),
-                                          ListaAdm.get(i).getCargo(),
-                                          ListaAdm.get(i).getRg(),
-                                          ListaAdm.get(i).getDataNasc(),
-                                          ListaAdm.get(i).getTelefone(),
-                                          ListaAdm.get(i).getEndereco(),
-                                          ListaAdm.get(i).getLogin(),
-                                          ListaAdm.get(i).getSenha(),
-                                          ListaAdm.get(i).getSalario()};
-            modeloAdm.addRow(linha);
-        }
-        
-        tbl_adm_adms.setModel(modeloAdm);
-    }
-   
-    /**
-     * Creates new form Principal
-     */
-    public listarFunc() {
+    public listarProdutosView() {
         initComponents();
         setLocationRelativeTo(null);
-        ListaAdm = new ArrayList();
-        ManipulaInterfaceAdm();
+        DefaultTableModel modelo = (DefaultTableModel) tbl_prod_prods.getModel();
+        tbl_prod_prods.setRowSorter(new TableRowSorter(modelo));
+        
+        readJTable();
     }
     
-    public void ManipulaInterfaceAdm(){
-        switch(modoAdm){
+    public void readJTable() {
+        DefaultTableModel modelo = (DefaultTableModel) tbl_prod_prods.getModel();
+        modelo.setNumRows(0);
+        ProdutoDao pdao = new ProdutoDao();
+        
+        for(Produto p: pdao.read()){
+            
+            modelo.addRow(new Object[]{
+                
+                p.getQuantidade(),
+                p.getNome()
+                
+                
+            });
+            
+        }
+        
+    }
+    
+    public void ManipulaInterfaceProd(){
+        switch(modoProd){
             case "Navegar":
                 btn_adm_editar.setEnabled(false);
                 btn_adm_excluir.setEnabled(false);
                 break;
             
             case "Novo":
+               
+                btn_adm_editar.setEnabled(false);
                 btn_adm_excluir.setEnabled(false);
                 break;
                 
@@ -87,7 +85,7 @@ public class listarFunc extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btn_adm_editar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_adm_adms = new javax.swing.JTable();
+        tbl_prod_prods = new javax.swing.JTable();
         btn_adm_excluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,42 +103,23 @@ public class listarFunc extends javax.swing.JFrame {
             }
         });
 
-        tbl_adm_adms.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_prod_prods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cpf", "Nome", "Cargo", "Rg", "Data Nasc", "Telefone", "Endereço"
+                "Quantidade", "Nome"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tbl_adm_adms);
-        if (tbl_adm_adms.getColumnModel().getColumnCount() > 0) {
-            tbl_adm_adms.getColumnModel().getColumn(0).setResizable(false);
-            tbl_adm_adms.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tbl_adm_adms.getColumnModel().getColumn(1).setResizable(false);
-            tbl_adm_adms.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tbl_adm_adms.getColumnModel().getColumn(2).setResizable(false);
-            tbl_adm_adms.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tbl_adm_adms.getColumnModel().getColumn(3).setResizable(false);
-            tbl_adm_adms.getColumnModel().getColumn(4).setResizable(false);
-            tbl_adm_adms.getColumnModel().getColumn(5).setResizable(false);
-            tbl_adm_adms.getColumnModel().getColumn(6).setResizable(false);
-        }
+        jScrollPane2.setViewportView(tbl_prod_prods);
 
         btn_adm_excluir.setText("Excluir");
         btn_adm_excluir.addActionListener(new java.awt.event.ActionListener() {
@@ -158,24 +137,21 @@ public class listarFunc extends javax.swing.JFrame {
                 .addComponent(btn_adm_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_adm_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(203, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adm_editar)
                     .addComponent(btn_adm_excluir))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Funcionários", jPanel2);
+        jTabbedPane1.addTab("Produtos", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,13 +173,13 @@ public class listarFunc extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_adm_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_excluirActionPerformed
-        modoAdm = "Navegar";
-        ManipulaInterfaceAdm();
+        modoProd = "Navegar";
+        ManipulaInterfaceProd();
     }//GEN-LAST:event_btn_adm_excluirActionPerformed
 
     private void btn_adm_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_editarActionPerformed
-        modoAdm = "Editar";
-        ManipulaInterfaceAdm();
+        modoProd = "Editar";
+        ManipulaInterfaceProd();
     }//GEN-LAST:event_btn_adm_editarActionPerformed
 
     /**
@@ -223,14 +199,110 @@ public class listarFunc extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(listarFunc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarProdutosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(listarFunc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarProdutosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(listarFunc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarProdutosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(listarFunc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listarProdutosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -267,7 +339,7 @@ public class listarFunc extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new listarFunc().setVisible(true);
+                new listarProdutosView().setVisible(true);
             }
         });
     }
@@ -278,7 +350,7 @@ public class listarFunc extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable tbl_adm_adms;
+    private javax.swing.JTable tbl_prod_prods;
     // End of variables declaration//GEN-END:variables
 }
 

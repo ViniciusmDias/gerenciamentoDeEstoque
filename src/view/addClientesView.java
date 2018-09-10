@@ -206,13 +206,13 @@ public class addClientesView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cli_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_salvarActionPerformed
-        Cliente p = new Cliente();
+        Cliente c = new Cliente();
         ClienteDao dao = new ClienteDao();
-        p.setNome(c_cli_nome.getText());
-        p.setCpf(Long.parseLong(c_cli_cpf.getText()));
-        p.setEmail(c_cli_email.getText());
+        c.setNome(c_cli_nome.getText());
+        c.setCpf(Long.parseLong(c_cli_cpf.getText()));
+        c.setEmail(c_cli_email.getText());
         
-        dao.create(p);
+        dao.create(c);
 
         modoCli = "Navegar";
         ManipulaInterfaceCli();

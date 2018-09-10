@@ -201,6 +201,12 @@ public class addFuncView extends javax.swing.JFrame {
 
         jLabel10.setText("Senha:");
 
+        c_adm_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_adm_loginActionPerformed(evt);
+            }
+        });
+
         jLabel11.setText("Login: ");
 
         jLabel12.setText("Salario: ");
@@ -342,8 +348,8 @@ public class addFuncView extends javax.swing.JFrame {
         a.setDataNasc(c_adm_nasc.getText());
         a.setTelefone(Long.parseLong(c_adm_tel.getText()));
         a.setEndereco(c_adm_ende.getText());
-        a.setLogin(c_adm_nasc.getText());
-        a.setSenha(c_adm_tel.getText());
+        a.setLogin(c_adm_login.getText());
+        a.setSenha(c_adm_senha.getText());
         a.setSalario(Long.parseLong(c_adm_sal.getText()));
 
         dao.create(a);
@@ -380,6 +386,10 @@ public class addFuncView extends javax.swing.JFrame {
         modoAdm = "Novo";
         ManipulaInterfaceAdm();
     }//GEN-LAST:event_btn_adm_novoActionPerformed
+
+    private void c_adm_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_adm_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_adm_loginActionPerformed
 
     /**
      * @param args the command line arguments
