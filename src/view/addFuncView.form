@@ -71,7 +71,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="btn_adm_salvar" min="-2" pref="78" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btn_adm_cancelar" min="-2" pref="76" max="-2" attributes="0"/>
+                                          <Component id="btn_adm_voltar" min="-2" pref="76" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -179,7 +179,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_adm_salvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_adm_cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_adm_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_adm_novo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -210,12 +210,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_adm_salvarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_adm_cancelar">
+        <Component class="javax.swing.JButton" name="btn_adm_voltar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_adm_cancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_adm_voltarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">

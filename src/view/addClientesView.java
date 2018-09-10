@@ -31,7 +31,7 @@ public class addClientesView extends javax.swing.JFrame {
         switch(modoCli){
             case "Navegar":
                 btn_cli_salvar.setEnabled(false);
-                btn_cli_cancelar.setEnabled(false);
+                btn_cli_voltar.setEnabled(true);
                 c_cli_nome.setEnabled(false);
                 c_cli_cpf.setEnabled(false);
                 c_cli_email.setEnabled(false);
@@ -40,7 +40,7 @@ public class addClientesView extends javax.swing.JFrame {
             
             case "Novo":
                 btn_cli_salvar.setEnabled(true);
-                btn_cli_cancelar.setEnabled(true);
+                btn_cli_voltar.setEnabled(true);
                 c_cli_nome.setEnabled(true);
                 c_cli_cpf.setEnabled(true);
                 c_cli_email.setEnabled(true);
@@ -49,7 +49,7 @@ public class addClientesView extends javax.swing.JFrame {
                 
             case "Editar":
                 btn_cli_salvar.setEnabled(true);
-                btn_cli_cancelar.setEnabled(true);
+                btn_cli_voltar.setEnabled(true);
                 c_cli_nome.setEnabled(true);
                 c_cli_cpf.setEnabled(true);
                 c_cli_email.setEnabled(true);
@@ -58,7 +58,7 @@ public class addClientesView extends javax.swing.JFrame {
                 
             case "Excluir":
                 btn_cli_salvar.setEnabled(false);
-                btn_cli_cancelar.setEnabled(false);
+                btn_cli_voltar.setEnabled(false);
                 c_cli_nome.setEnabled(false);
                 c_cli_cpf.setEnabled(false);
                 c_cli_email.setEnabled(false);
@@ -67,7 +67,7 @@ public class addClientesView extends javax.swing.JFrame {
                 
             case "Selecao":
                 btn_cli_salvar.setEnabled(false);
-                btn_cli_cancelar.setEnabled(false);
+                btn_cli_voltar.setEnabled(false);
                 c_cli_nome.setEnabled(false);
                 c_cli_cpf.setEnabled(false);
                 c_cli_email.setEnabled(false);
@@ -92,7 +92,7 @@ public class addClientesView extends javax.swing.JFrame {
 
         jPanel6 = new javax.swing.JPanel();
         btn_cli_salvar = new javax.swing.JButton();
-        btn_cli_cancelar = new javax.swing.JButton();
+        btn_cli_voltar = new javax.swing.JButton();
         btn_cli_novo = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         c_cli_cpf = new javax.swing.JTextField();
@@ -112,10 +112,10 @@ public class addClientesView extends javax.swing.JFrame {
             }
         });
 
-        btn_cli_cancelar.setText("Cancelar");
-        btn_cli_cancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_cli_voltar.setText("Voltar");
+        btn_cli_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cli_cancelarActionPerformed(evt);
+                btn_cli_voltarActionPerformed(evt);
             }
         });
 
@@ -144,7 +144,7 @@ public class addClientesView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btn_cli_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_cli_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_cli_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +182,7 @@ public class addClientesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cli_salvar)
-                    .addComponent(btn_cli_cancelar)
+                    .addComponent(btn_cli_voltar)
                     .addComponent(btn_cli_novo))
                 .addContainerGap())
         );
@@ -219,10 +219,11 @@ public class addClientesView extends javax.swing.JFrame {
         limpaTextoCli();
     }//GEN-LAST:event_btn_cli_salvarActionPerformed
 
-    private void btn_cli_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_cancelarActionPerformed
-        modoCli = "Navegar";
-        ManipulaInterfaceCli();
-    }//GEN-LAST:event_btn_cli_cancelarActionPerformed
+    private void btn_cli_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_voltarActionPerformed
+        new administradorView().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btn_cli_voltarActionPerformed
 
     private void btn_cli_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_novoActionPerformed
         modoCli = "Novo";
@@ -266,9 +267,9 @@ public class addClientesView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cli_cancelar;
     private javax.swing.JButton btn_cli_novo;
     private javax.swing.JButton btn_cli_salvar;
+    private javax.swing.JButton btn_cli_voltar;
     private javax.swing.JTextField c_cli_cpf;
     private javax.swing.JTextField c_cli_email;
     private javax.swing.JTextField c_cli_nome;

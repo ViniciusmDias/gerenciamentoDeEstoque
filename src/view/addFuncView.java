@@ -32,7 +32,7 @@ public class addFuncView extends javax.swing.JFrame {
         switch(modoAdm){
             case "Navegar":
                 btn_adm_salvar.setEnabled(false);
-                btn_adm_cancelar.setEnabled(false);
+                btn_adm_voltar.setEnabled(true);
                 c_adm_cpf.setEnabled(false);
                 c_adm_nome.setEnabled(false);
                 c_adm_cargo.setEnabled(false);
@@ -49,7 +49,7 @@ public class addFuncView extends javax.swing.JFrame {
             
             case "Novo":
                 btn_adm_salvar.setEnabled(true);
-                btn_adm_cancelar.setEnabled(true);
+                btn_adm_voltar.setEnabled(true);
                 c_adm_cpf.setEnabled(true);
                 c_adm_nome.setEnabled(true);
                 c_adm_cargo.setEnabled(true);
@@ -65,7 +65,7 @@ public class addFuncView extends javax.swing.JFrame {
                 
             case "Editar":
                 btn_adm_salvar.setEnabled(true);
-                btn_adm_cancelar.setEnabled(true);
+                btn_adm_voltar.setEnabled(true);
                 c_adm_cpf.setEnabled(true);
                 c_adm_nome.setEnabled(true);
                 c_adm_cargo.setEnabled(true);
@@ -81,7 +81,7 @@ public class addFuncView extends javax.swing.JFrame {
                 
             case "Excluir":
                 btn_adm_salvar.setEnabled(false);
-                btn_adm_cancelar.setEnabled(false);
+                btn_adm_voltar.setEnabled(false);
                 c_adm_cpf.setEnabled(false);
                 c_adm_nome.setEnabled(false);
                 c_adm_cargo.setEnabled(false);
@@ -97,7 +97,7 @@ public class addFuncView extends javax.swing.JFrame {
                 
             case "Selecao":
                 btn_adm_salvar.setEnabled(false);
-                btn_adm_cancelar.setEnabled(false);
+                btn_adm_voltar.setEnabled(false);
                 c_adm_cpf.setEnabled(false);
                 c_adm_nome.setEnabled(false);
                 c_adm_cargo.setEnabled(false);
@@ -141,7 +141,7 @@ public class addFuncView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         c_adm_nome = new javax.swing.JTextField();
         btn_adm_salvar = new javax.swing.JButton();
-        btn_adm_cancelar = new javax.swing.JButton();
+        btn_adm_voltar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         c_adm_cargo = new javax.swing.JTextField();
         btn_adm_novo = new javax.swing.JButton();
@@ -175,10 +175,10 @@ public class addFuncView extends javax.swing.JFrame {
             }
         });
 
-        btn_adm_cancelar.setText("Cancelar");
-        btn_adm_cancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_adm_voltar.setText("Voltar");
+        btn_adm_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_adm_cancelarActionPerformed(evt);
+                btn_adm_voltarActionPerformed(evt);
             }
         });
 
@@ -236,7 +236,7 @@ public class addFuncView extends javax.swing.JFrame {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(btn_adm_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btn_adm_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btn_adm_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
                                 .addComponent(jLabel12)
@@ -318,7 +318,7 @@ public class addFuncView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adm_salvar)
-                    .addComponent(btn_adm_cancelar)
+                    .addComponent(btn_adm_voltar)
                     .addComponent(btn_adm_novo))
                 .addContainerGap())
         );
@@ -357,30 +357,13 @@ public class addFuncView extends javax.swing.JFrame {
         modoAdm = "Navegar";
         ManipulaInterfaceAdm();
         limpaTextoAdm();
-
-        //        Administrador F = new Administrador();
-        //        F.setCpf(Long.parseLong(c_adm_cpf.getText()));
-        //        F.setNome(c_adm_nome.getText());
-        //        F.setCargo(c_adm_cargo.getText());
-        //        F.setRg(Long.parseLong(c_adm_rg.getText()));
-        //        F.setDataNasc(c_adm_nasc.getText());
-        //        F.setTelefone(Long.parseLong(c_adm_tel.getText()));
-        //        F.setEndereco(c_adm_ende.getText());
-        //        F.setLogin(c_adm_nasc.getText());
-        //        F.setSenha(c_adm_tel.getText());
-        //        F.setSalario(Long.parseLong(c_adm_sal.getText()));
-        //
-        //        ListaAdm.add(F);
-        //        LoadTableAdm();
-        //        modoAdm = "Navegar";
-        //        ManipulaInterfaceAdm();
-        //        limpaTextoAdm();
     }//GEN-LAST:event_btn_adm_salvarActionPerformed
 
-    private void btn_adm_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_cancelarActionPerformed
-        modoAdm = "Navegar";
-        ManipulaInterfaceAdm();
-    }//GEN-LAST:event_btn_adm_cancelarActionPerformed
+    private void btn_adm_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_voltarActionPerformed
+        new administradorView().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btn_adm_voltarActionPerformed
 
     private void btn_adm_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_novoActionPerformed
         modoAdm = "Novo";
@@ -427,9 +410,9 @@ public class addFuncView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_adm_cancelar;
     private javax.swing.JButton btn_adm_novo;
     private javax.swing.JButton btn_adm_salvar;
+    private javax.swing.JButton btn_adm_voltar;
     private javax.swing.JTextField c_adm_cargo;
     private javax.swing.JTextField c_adm_cpf;
     private javax.swing.JTextField c_adm_ende;

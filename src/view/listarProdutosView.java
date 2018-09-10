@@ -6,6 +6,7 @@ import javax.swing.table.TableRowSorter;
 import model.bean.Cliente;
 import model.bean.Produto;
 import model.bean.Produto;
+import model.dao.ClienteDao;
 import model.dao.ProdutoDao;
 
 /**
@@ -45,29 +46,29 @@ public class listarProdutosView extends javax.swing.JFrame {
     public void ManipulaInterfaceProd(){
         switch(modoProd){
             case "Navegar":
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_prod_editar.setEnabled(false);
+                btn_prod_excluir.setEnabled(false);
                 break;
             
             case "Novo":
                
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_prod_editar.setEnabled(false);
+                btn_prod_excluir.setEnabled(false);
                 break;
                 
             case "Editar":
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_prod_editar.setEnabled(false);
+                btn_prod_excluir.setEnabled(false);
                 break;
                 
             case "Excluir":
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_prod_editar.setEnabled(false);
+                btn_prod_excluir.setEnabled(false);
                 break;
                 
             case "Selecao":
-                btn_adm_editar.setEnabled(true);
-                btn_adm_excluir.setEnabled(true);
+                btn_prod_editar.setEnabled(true);
+                btn_prod_excluir.setEnabled(true);
                 break;
             default: System.out.println("Modo inválido");
         }
@@ -83,10 +84,11 @@ public class listarProdutosView extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        btn_adm_editar = new javax.swing.JButton();
+        btn_prod_editar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_prod_prods = new javax.swing.JTable();
-        btn_adm_excluir = new javax.swing.JButton();
+        btn_prod_excluir = new javax.swing.JButton();
+        btn_prod_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(49, 68, 106));
@@ -94,12 +96,10 @@ public class listarProdutosView extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(92, 101, 112));
         jTabbedPane1.setForeground(new java.awt.Color(222, 115, 60));
 
-        jPanel2.setBackground(new java.awt.Color(13, 62, 118));
-
-        btn_adm_editar.setText("Editar");
-        btn_adm_editar.addActionListener(new java.awt.event.ActionListener() {
+        btn_prod_editar.setText("Editar");
+        btn_prod_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_adm_editarActionPerformed(evt);
+                btn_prod_editarActionPerformed(evt);
             }
         });
 
@@ -121,10 +121,17 @@ public class listarProdutosView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbl_prod_prods);
 
-        btn_adm_excluir.setText("Excluir");
-        btn_adm_excluir.addActionListener(new java.awt.event.ActionListener() {
+        btn_prod_excluir.setText("Excluir");
+        btn_prod_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_adm_excluirActionPerformed(evt);
+                btn_prod_excluirActionPerformed(evt);
+            }
+        });
+
+        btn_prod_voltar.setText("Voltar");
+        btn_prod_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_prod_voltarActionPerformed(evt);
             }
         });
 
@@ -133,22 +140,25 @@ public class listarProdutosView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(btn_adm_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_adm_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addComponent(btn_prod_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btn_prod_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btn_prod_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_adm_editar)
-                    .addComponent(btn_adm_excluir))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btn_prod_editar)
+                    .addComponent(btn_prod_excluir)
+                    .addComponent(btn_prod_voltar))
+                .addGap(10, 10, 10))
         );
 
         jTabbedPane1.addTab("Produtos", jPanel2);
@@ -164,23 +174,41 @@ public class listarProdutosView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_adm_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_excluirActionPerformed
+    private void btn_prod_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_excluirActionPerformed
+        if(tbl_prod_prods.getSelectedRow() != -1) {
+            
+            Produto p = new Produto();
+            ProdutoDao dao = new ProdutoDao();
+            
+            p.setNome((String) tbl_prod_prods.getValueAt(tbl_prod_prods.getSelectedRow(), 1));
+            
+            dao.delete(p);
+            
+            readJTable();
+            
+        }
         modoProd = "Navegar";
         ManipulaInterfaceProd();
-    }//GEN-LAST:event_btn_adm_excluirActionPerformed
+    }//GEN-LAST:event_btn_prod_excluirActionPerformed
 
-    private void btn_adm_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_editarActionPerformed
+    private void btn_prod_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_editarActionPerformed
         modoProd = "Editar";
         ManipulaInterfaceProd();
-    }//GEN-LAST:event_btn_adm_editarActionPerformed
+    }//GEN-LAST:event_btn_prod_editarActionPerformed
+
+    private void btn_prod_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_voltarActionPerformed
+        new administradorView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_prod_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,8 +373,9 @@ public class listarProdutosView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_adm_editar;
-    private javax.swing.JButton btn_adm_excluir;
+    private javax.swing.JButton btn_prod_editar;
+    private javax.swing.JButton btn_prod_excluir;
+    private javax.swing.JButton btn_prod_voltar;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;

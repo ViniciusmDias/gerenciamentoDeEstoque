@@ -33,7 +33,7 @@ public class addProdutosView extends javax.swing.JFrame {
         switch(modoProd){
             case "Navegar":
                 btn_prod_salvar.setEnabled(false);
-                btn_prod_cancelar.setEnabled(false);
+                btn_prod_voltar.setEnabled(true);
                 c_prod_qtd.setEnabled(false);
                 c_prod_nome.setEnabled(false);
                 btn_prod_novo.setEnabled(true);
@@ -41,7 +41,7 @@ public class addProdutosView extends javax.swing.JFrame {
             
             case "Novo":
                 btn_prod_salvar.setEnabled(true);
-                btn_prod_cancelar.setEnabled(true);
+                btn_prod_voltar.setEnabled(true);
                 c_prod_qtd.setEnabled(true);
                 c_prod_nome.setEnabled(true);
                 btn_prod_novo.setEnabled(false);
@@ -49,7 +49,7 @@ public class addProdutosView extends javax.swing.JFrame {
                 
             case "Editar":
                 btn_prod_salvar.setEnabled(true);
-                btn_prod_cancelar.setEnabled(true);
+                btn_prod_voltar.setEnabled(true);
                 c_prod_qtd.setEnabled(true);
                 c_prod_nome.setEnabled(true);
                 btn_prod_novo.setEnabled(true);
@@ -57,7 +57,7 @@ public class addProdutosView extends javax.swing.JFrame {
                 
             case "Excluir":
                 btn_prod_salvar.setEnabled(false);
-                btn_prod_cancelar.setEnabled(false);
+                btn_prod_voltar.setEnabled(false);
                 c_prod_qtd.setEnabled(false);
                 c_prod_nome.setEnabled(false);
                 btn_prod_novo.setEnabled(true);
@@ -65,7 +65,7 @@ public class addProdutosView extends javax.swing.JFrame {
                 
             case "Selecao":
                 btn_prod_salvar.setEnabled(false);
-                btn_prod_cancelar.setEnabled(false);
+                btn_prod_voltar.setEnabled(false);
                 c_prod_qtd.setEnabled(false);
                 c_prod_nome.setEnabled(false);
                 btn_prod_novo.setEnabled(true);
@@ -92,7 +92,7 @@ public class addProdutosView extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         c_prod_nome = new javax.swing.JTextField();
         btn_prod_salvar = new javax.swing.JButton();
-        btn_prod_cancelar = new javax.swing.JButton();
+        btn_prod_voltar = new javax.swing.JButton();
         btn_prod_novo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,10 +110,10 @@ public class addProdutosView extends javax.swing.JFrame {
             }
         });
 
-        btn_prod_cancelar.setText("Cancelar");
-        btn_prod_cancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_prod_voltar.setText("Voltar");
+        btn_prod_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_prod_cancelarActionPerformed(evt);
+                btn_prod_voltarActionPerformed(evt);
             }
         });
 
@@ -136,7 +136,7 @@ public class addProdutosView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btn_prod_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_prod_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_prod_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -164,7 +164,7 @@ public class addProdutosView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_prod_salvar)
-                    .addComponent(btn_prod_cancelar)
+                    .addComponent(btn_prod_voltar)
                     .addComponent(btn_prod_novo))
                 .addContainerGap())
         );
@@ -196,10 +196,11 @@ public class addProdutosView extends javax.swing.JFrame {
         limpaTextoProd();
     }//GEN-LAST:event_btn_prod_salvarActionPerformed
 
-    private void btn_prod_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_cancelarActionPerformed
-        modoProd = "Navegar";
-        ManipulaInterfaceProd();
-    }//GEN-LAST:event_btn_prod_cancelarActionPerformed
+    private void btn_prod_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_voltarActionPerformed
+        new administradorView().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btn_prod_voltarActionPerformed
 
     private void btn_prod_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_novoActionPerformed
         modoProd = "Novo";
@@ -242,9 +243,9 @@ public class addProdutosView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_prod_cancelar;
     private javax.swing.JButton btn_prod_novo;
     private javax.swing.JButton btn_prod_salvar;
+    private javax.swing.JButton btn_prod_voltar;
     private javax.swing.JTextField c_prod_nome;
     private javax.swing.JTextField c_prod_qtd;
     private javax.swing.JLabel jLabel13;

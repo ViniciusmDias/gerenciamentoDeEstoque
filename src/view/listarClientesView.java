@@ -3,8 +3,10 @@ package view;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.bean.Administrador;
 import model.bean.Cliente;
 import model.bean.Produto;
+import model.dao.AdministradorDao;
 import model.dao.ClienteDao;
 import model.dao.ProdutoDao;
 
@@ -43,29 +45,29 @@ public class listarClientesView extends javax.swing.JFrame {
     public void ManipulaInterfaceCli(){
         switch(modoCli){
             case "Navegar":
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_cli_editar.setEnabled(false);
+                btn_cli_excluir.setEnabled(false);
                 break;
             
             case "Novo":
                
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_cli_editar.setEnabled(false);
+                btn_cli_excluir.setEnabled(false);
                 break;
                 
             case "Editar":
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_cli_editar.setEnabled(false);
+                btn_cli_excluir.setEnabled(false);
                 break;
                 
             case "Excluir":
-                btn_adm_editar.setEnabled(false);
-                btn_adm_excluir.setEnabled(false);
+                btn_cli_editar.setEnabled(false);
+                btn_cli_excluir.setEnabled(false);
                 break;
                 
             case "Selecao":
-                btn_adm_editar.setEnabled(true);
-                btn_adm_excluir.setEnabled(true);
+                btn_cli_editar.setEnabled(true);
+                btn_cli_excluir.setEnabled(true);
                 break;
             default: System.out.println("Modo inválido");
         }
@@ -81,10 +83,11 @@ public class listarClientesView extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        btn_adm_editar = new javax.swing.JButton();
+        btn_cli_editar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_cli_clis = new javax.swing.JTable();
-        btn_adm_excluir = new javax.swing.JButton();
+        btn_cli_excluir = new javax.swing.JButton();
+        btn_cli_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(49, 68, 106));
@@ -92,12 +95,10 @@ public class listarClientesView extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(92, 101, 112));
         jTabbedPane1.setForeground(new java.awt.Color(222, 115, 60));
 
-        jPanel2.setBackground(new java.awt.Color(13, 62, 118));
-
-        btn_adm_editar.setText("Editar");
-        btn_adm_editar.addActionListener(new java.awt.event.ActionListener() {
+        btn_cli_editar.setText("Atualizar");
+        btn_cli_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_adm_editarActionPerformed(evt);
+                btn_cli_editarActionPerformed(evt);
             }
         });
 
@@ -119,10 +120,17 @@ public class listarClientesView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbl_cli_clis);
 
-        btn_adm_excluir.setText("Excluir");
-        btn_adm_excluir.addActionListener(new java.awt.event.ActionListener() {
+        btn_cli_excluir.setText("Excluir");
+        btn_cli_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_adm_excluirActionPerformed(evt);
+                btn_cli_excluirActionPerformed(evt);
+            }
+        });
+
+        btn_cli_voltar.setText("Voltar");
+        btn_cli_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cli_voltarActionPerformed(evt);
             }
         });
 
@@ -131,11 +139,13 @@ public class listarClientesView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(btn_adm_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_adm_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addComponent(btn_cli_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btn_cli_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btn_cli_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
         );
         jPanel2Layout.setVerticalGroup(
@@ -144,8 +154,9 @@ public class listarClientesView extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_adm_editar)
-                    .addComponent(btn_adm_excluir))
+                    .addComponent(btn_cli_editar)
+                    .addComponent(btn_cli_excluir)
+                    .addComponent(btn_cli_voltar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -170,15 +181,40 @@ public class listarClientesView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_adm_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_excluirActionPerformed
+    private void btn_cli_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_excluirActionPerformed
+        if(tbl_cli_clis.getSelectedRow() != -1) {
+            
+            Cliente c = new Cliente();
+            ClienteDao dao = new ClienteDao();
+            
+            c.setNome((String) tbl_cli_clis.getValueAt(tbl_cli_clis.getSelectedRow(), 1));
+            
+            dao.delete(c);
+            
+            readJTable();
+            
+        }
+        
         modoCli = "Navegar";
         ManipulaInterfaceCli();
-    }//GEN-LAST:event_btn_adm_excluirActionPerformed
+    }//GEN-LAST:event_btn_cli_excluirActionPerformed
 
-    private void btn_adm_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adm_editarActionPerformed
+    private void btn_cli_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_editarActionPerformed
+        if(tbl_cli_clis.getSelectedRow() != -1) {
+            
+            
+        }
+
+
         modoCli = "Editar";
         ManipulaInterfaceCli();
-    }//GEN-LAST:event_btn_adm_editarActionPerformed
+    }//GEN-LAST:event_btn_cli_editarActionPerformed
+
+    private void btn_cli_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_voltarActionPerformed
+        new administradorView().setVisible(true);
+        this.dispose();
+         // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cli_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -727,8 +763,9 @@ public class listarClientesView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_adm_editar;
-    private javax.swing.JButton btn_adm_excluir;
+    private javax.swing.JButton btn_cli_editar;
+    private javax.swing.JButton btn_cli_excluir;
+    private javax.swing.JButton btn_cli_voltar;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;

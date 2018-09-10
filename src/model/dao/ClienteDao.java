@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.bean.Administrador;
 import model.bean.Cliente;
 
 /**
@@ -94,6 +95,25 @@ public class ClienteDao {
             JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar "+ex);
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);   
+        }
+    }
+    public void delete(Cliente c) {
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM Clientes WHERE Nome = ?");
+            stmt.setString(1, c.getNome());
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir "+ex);
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);   

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.bean.Administrador;
 import model.bean.Cliente;
 import model.bean.Produto;
 import model.bean.Produto;
@@ -101,6 +102,24 @@ public class ProdutoDao {
             ConnectionFactory.closeConnection(con, stmt);   
         }
     }
-    
+    public void delete(Produto p) {
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM Produto WHERE Nome = ?");
+            stmt.setString(1, p.getNome());
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir "+ex);
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);   
+        }
+    }
 }
 

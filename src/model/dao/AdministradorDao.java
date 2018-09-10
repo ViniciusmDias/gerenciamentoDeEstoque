@@ -125,14 +125,33 @@ public class AdministradorDao {
             ConnectionFactory.closeConnection(con, stmt);   
         }
     }
-    
+    public void delete(Administrador a) {
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("DELETE FROM Administrador WHERE Nome = ?");
+            stmt.setString(1, a.getNome());
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir "+ex);
+            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);   
+        }
+    }
+
     public boolean checkLogin(String Login, String Senha) {
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean check = false;
-        
+        boolean administrador = false;
         
         try {
             stmt = con.prepareStatement("SELECT * FROM Administrador WHERE Login = ? and Senha = ?");
@@ -141,6 +160,7 @@ public class AdministradorDao {
             stmt.setString(2, Senha);
             
             rs = stmt.executeQuery();
+           
             
             if(rs.next()) {
                 check = true;
