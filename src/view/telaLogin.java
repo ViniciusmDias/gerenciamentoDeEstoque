@@ -143,14 +143,16 @@ public class telaLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
 
         pack();
@@ -167,14 +169,20 @@ public class telaLogin extends javax.swing.JFrame {
         FuncionarioDao dao = new FuncionarioDao();
         
         if(dao.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))) {
-
-            new administradorView().setVisible(true);
-            this.dispose();
-            
+            if (dao.checkAdm(txtLogin.getText(), new String(txtSenha.getPassword()))) {
+                this.dispose();
+                new administradorView().setVisible(true);
+            } else {
+                this.dispose();
+                new atendenteView().setVisible(true);
+            }    
+                
         } else { 
-            JOptionPane.showMessageDialog(null, "Senha Incorreta");
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos");
             
         }
+        
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

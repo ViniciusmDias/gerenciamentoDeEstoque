@@ -287,7 +287,7 @@ public class FuncionarioView extends javax.swing.JFrame {
         }
 
         try {
-            c_func_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+            c_func_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -345,7 +345,7 @@ public class FuncionarioView extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(c_func_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(c_func_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -445,8 +445,8 @@ public class FuncionarioView extends javax.swing.JFrame {
     private void btn_func_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_func_atualizarActionPerformed
         if(tbl_func_funcs.getSelectedRow() != -1) {
             String cargo = (String) c_func_cargo.getSelectedItem();
-            FuncionarioControl.updateFuncionario(c_func_cpf.getText(), c_func_nome.getText(), c_func_cargo.getSelectedItem().toString(), Long.parseLong(c_func_rg.getText()), 
-                    c_func_nasc.getText(), Long.parseLong(c_func_tel.getText()), c_func_ende.getText(), c_func_login.getText(), new String(c_func_senha.getPassword()), Long.parseLong(c_func_sal.getText()));
+            FuncionarioControl.updateFuncionario(c_func_cpf.getText(), c_func_nome.getText(), c_func_cargo.getSelectedItem().toString(), c_func_rg.getText(), 
+                    c_func_nasc.getText(), c_func_tel.getText(), c_func_ende.getText(), c_func_login.getText(), new String(c_func_senha.getPassword()), Long.parseLong(c_func_sal.getText()));
             modoFuncionario = "Navegar";
             ManipulaInterfaceFuncionario();
             limpaTextoFuncionario();
@@ -499,7 +499,7 @@ public class FuncionarioView extends javax.swing.JFrame {
             c_func_sal.setText(tbl_func_funcs.getValueAt(tbl_func_funcs.getSelectedRow(), 9).toString());
 
         }
-        modoFuncionario = "Editar";
+        modoFuncionario = "Selecao";
         ManipulaInterfaceFuncionario();
     }//GEN-LAST:event_tbl_func_funcsMouseClicked
 
@@ -510,6 +510,7 @@ public class FuncionarioView extends javax.swing.JFrame {
     private void btn_func_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_func_novoActionPerformed
         modoFuncionario = "Novo";
         ManipulaInterfaceFuncionario();
+        limpaTextoFuncionario();
     }//GEN-LAST:event_btn_func_novoActionPerformed
 
     private void btn_func_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_func_voltarActionPerformed
@@ -518,8 +519,8 @@ public class FuncionarioView extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_func_voltarActionPerformed
 
     private void btn_func_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_func_salvarActionPerformed
-        FuncionarioControl.salvarFuncionario(c_func_cpf.getText(), c_func_nome.getText(), c_func_cargo.getSelectedItem().toString(), Long.parseLong(c_func_rg.getText()), 
-                    c_func_nasc.getText(), Long.parseLong(c_func_tel.getText()), c_func_ende.getText(), c_func_login.getText(), new String(c_func_senha.getPassword()), Long.parseLong(c_func_sal.getText()));     
+        FuncionarioControl.salvarFuncionario(c_func_cpf.getText(), c_func_nome.getText(), c_func_cargo.getSelectedItem().toString(), c_func_rg.getText(), 
+                    c_func_nasc.getText(), c_func_tel.getText(), c_func_ende.getText(), c_func_login.getText(), new String(c_func_senha.getPassword()), Long.parseLong(c_func_sal.getText()));     
         modoFuncionario = "Navegar";
         ManipulaInterfaceFuncionario();
         limpaTextoFuncionario();

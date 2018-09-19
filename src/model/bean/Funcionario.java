@@ -15,9 +15,9 @@ public class Funcionario  {
     private String Cpf;
     private String Nome;
     private String Cargo;   
-    private long Rg;
+    private String Rg;
     private String DataNasc;
-    private long Telefone;
+    private String Telefone;
     private String Endereco;
     private String Login;
     private String Senha;
@@ -26,8 +26,8 @@ public class Funcionario  {
     public Funcionario() {
     }
 
-    public Funcionario(String Cpf, String Nome, String Cargo, long Rg, String DataNasc,
-                        long Telefone, String Endereco, String Login, String Senha, long Salario) {
+    public Funcionario(String Cpf, String Nome, String Cargo, String Rg, String DataNasc,
+                        String Telefone, String Endereco, String Login, String Senha, long Salario) {
         this.Cpf = Cpf;
         this.Nome = Nome;
         this.Cargo = Cargo;
@@ -66,11 +66,11 @@ public class Funcionario  {
         this.Cargo = Cargo;
     }
 
-    public long getRg() {
+    public String getRg() {
         return Rg;
     }
 
-    public void setRg(long Rg) {
+    public void setRg(String Rg) {
         this.Rg = Rg;
     }
 
@@ -82,11 +82,11 @@ public class Funcionario  {
         this.DataNasc = DataNasc;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return Telefone;
     }
 
-    public void setTelefone(long Telefone) {
+    public void setTelefone(String Telefone) {
         this.Telefone = Telefone;
     }
 

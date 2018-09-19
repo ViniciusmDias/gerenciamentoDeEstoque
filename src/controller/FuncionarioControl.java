@@ -16,8 +16,8 @@ import model.dao.FuncionarioDao;
 public class FuncionarioControl {
     
     
-    public static void salvarFuncionario(String Cpf, String Nome, String Cargo, long Rg, String DataNasc,
-                        long Telefone, String Endereco, String Login, String Senha, long Salario) {
+    public static void salvarFuncionario(String Cpf, String Nome, String Cargo, String Rg, String DataNasc,
+                        String Telefone, String Endereco, String Login, String Senha, long Salario) {
         
         Funcionario f = new Funcionario(Cpf, Nome, Cargo, Rg, DataNasc, Telefone, Endereco, Login, Senha, Salario);
         FuncionarioDao dao = new FuncionarioDao();
@@ -59,8 +59,8 @@ public class FuncionarioControl {
         }    
     }
     
-    public static void updateFuncionario(String Cpf, String Nome, String Cargo, long Rg, String DataNasc,
-                        long Telefone, String Endereco, String Login, String Senha, long Salario) {
+    public static void updateFuncionario(String Cpf, String Nome, String Cargo, String Rg, String DataNasc,
+                        String Telefone, String Endereco, String Login, String Senha, long Salario) {
         
         Funcionario f = new Funcionario(Cpf, Nome, Cargo, Rg, DataNasc, Telefone, Endereco, Login, Senha, Salario);
         FuncionarioDao dao = new FuncionarioDao();

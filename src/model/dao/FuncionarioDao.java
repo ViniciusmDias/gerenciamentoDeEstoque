@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.Funcionario;
-import model.bean.Cliente;
 
 /**
  *
@@ -31,14 +30,14 @@ public class FuncionarioDao {
         
         
         try {
-            stmt = con.prepareStatement("INSERT INTO Administrador (Cpf, Nome, Cargo, Rg, DataNasc,"
+            stmt = con.prepareStatement("INSERT INTO Funcionario (Cpf, Nome, Cargo, Rg, DataNasc,"
                     + "Telefone, Endereco, Login, Senha, Salario)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, a.getCpf());
             stmt.setString(2, a.getNome());
             stmt.setString(3, a.getCargo());
-            stmt.setLong(4, a.getRg());
+            stmt.setString(4, a.getRg());
             stmt.setString(5, a.getDataNasc());
-            stmt.setLong(6, a.getTelefone());
+            stmt.setString(6, a.getTelefone());
             stmt.setString(7, a.getEndereco());
             stmt.setString(8, a.getLogin());
             stmt.setString(9, a.getSenha());
@@ -61,27 +60,27 @@ public class FuncionarioDao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Funcionario> adms = new ArrayList<>();
+        List<Funcionario> funcs = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM Administrador");
+            stmt = con.prepareStatement("SELECT * FROM Funcionario");
             rs = stmt.executeQuery();
             
             while (rs.next()){
                 
-                Funcionario adm = new Funcionario();
+                Funcionario func = new Funcionario();
+                func.setCpf(rs.getString("Cpf"));
+                func.setNome(rs.getString("Nome"));
+                func.setCargo(rs.getString("Cargo"));
+                func.setRg(rs.getString("Rg"));
+                func.setDataNasc(rs.getString("DataNasc"));
+                func.setTelefone(rs.getString("Telefone"));
+                func.setEndereco(rs.getString("Endereco"));
+                func.setLogin(rs.getString("Login"));
+                func.setSenha(rs.getString("Senha"));
+                func.setSalario(rs.getLong("Salario"));
                 
-                adm.setNome(rs.getString("Nome"));
-                adm.setCargo(rs.getString("Cargo"));
-                adm.setRg(rs.getLong("Rg"));
-                adm.setDataNasc(rs.getString("DataNasc"));
-                adm.setTelefone(rs.getLong("Telefone"));
-                adm.setEndereco(rs.getString("Endereco"));
-                adm.setLogin(rs.getString("Login"));
-                adm.setSenha(rs.getString("Senha"));
-                adm.setSalario(rs.getLong("Salario"));
-                
-                adms.add(adm);
+                funcs.add(func);
                 
             }
             
@@ -91,7 +90,7 @@ public class FuncionarioDao {
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);   
         }
-        return adms;
+        return funcs;
         
     }
     public void update(Funcionario a) {
@@ -105,9 +104,9 @@ public class FuncionarioDao {
             stmt.setString(1, a.getCpf());
             stmt.setString(2, a.getNome());
             stmt.setString(3, a.getCargo());
-            stmt.setLong(4, a.getRg());
+            stmt.setString(4, a.getRg());
             stmt.setString(5, a.getDataNasc());
-            stmt.setLong(6, a.getTelefone());
+            stmt.setString(6, a.getTelefone());
             stmt.setString(7, a.getEndereco());
             stmt.setString(8, a.getLogin());
             stmt.setString(9, a.getSenha());
@@ -131,7 +130,7 @@ public class FuncionarioDao {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("DELETE FROM Administrador WHERE Nome = ?");
+            stmt = con.prepareStatement("DELETE FROM Funcionario WHERE Nome = ?");
             stmt.setString(1, a.getNome());
             
             stmt.executeUpdate();
@@ -151,10 +150,9 @@ public class FuncionarioDao {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean check = false;
-        boolean administrador = false;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM Administrador WHERE Login = ? and Senha = ?");
+            stmt = con.prepareStatement("SELECT cargo FROM Funcionario WHERE Login = ? and Senha = ?");
            
             stmt.setString(1, Login);
             stmt.setString(2, Senha);
@@ -167,7 +165,7 @@ public class FuncionarioDao {
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Senha incorreta "+ex);
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos "+ex);
             Logger.getLogger(FuncionarioDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);   
@@ -175,6 +173,40 @@ public class FuncionarioDao {
         
         return check;
         
+    }
+    public boolean checkAdm(String Login, String Senha) {
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean administrador = false;
+        
+        try {
+            stmt = con.prepareStatement("SELECT cargo FROM Funcionario WHERE Login = ? and Senha = ?");
+           
+            stmt.setString(1, Login);
+            stmt.setString(2, Senha);
+            
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+                if( rs.getString("cargo") == "Administrador") {
+                    administrador = true;
+                }
+                
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos "+ex);
+            Logger.getLogger(FuncionarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);   
+        }
+        
+        return administrador;
     }
     
 }
