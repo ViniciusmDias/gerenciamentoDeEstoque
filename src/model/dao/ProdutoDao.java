@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.bean.Administrador;
+import model.bean.Funcionario;
 import model.bean.Cliente;
 import model.bean.Produto;
 import model.bean.Produto;
@@ -49,7 +49,7 @@ public class ProdutoDao {
         }
     }
     
-    public List<Produto> read(){
+    public static List<Produto> read(){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -86,11 +86,9 @@ public class ProdutoDao {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("UPDATE Produto SET Nome = ?, Quantidade = ?, WHERE Nome = ?");
+            stmt = con.prepareStatement("UPDATE Produto SET Nome = ?, Quantidade = ?");
             stmt.setString(1, p.getNome());
             stmt.setInt(2, p.getQuantidade());
-            
-            stmt.setString(3, p.getNome());
             
             stmt.executeUpdate();
             

@@ -11,14 +11,14 @@ package model.bean;
  */
 public class Cliente {
     
-    Long Cpf;
     String Nome;
     String Email;
+    String Cpf;
 
     public Cliente() {
     }
 
-    public Cliente(String Nome, String Email, Long Cpf) {
+    public Cliente(String Nome, String Email, String Cpf) {
         this.Nome = Nome;
         this.Email = Email;
         this.Cpf = Cpf;
@@ -40,11 +40,11 @@ public class Cliente {
         this.Email = Email;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return Cpf;
     }
 
-    public void setCpf(Long Cpf) {
+    public void setCpf(String Cpf) {
         this.Cpf = Cpf;
     }
     

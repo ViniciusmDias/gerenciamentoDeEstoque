@@ -5,12 +5,9 @@
  */
 package view;
 
-import java.util.ArrayList;
+import controller.ClienteControl;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.bean.Cliente;
-import model.bean.Cliente;
-import model.dao.ClienteDao;
 
 /**
  *
@@ -32,19 +29,8 @@ public class ClientesView extends javax.swing.JFrame {
         readJTable();
     }
     public void readJTable() {
-        DefaultTableModel modelo = (DefaultTableModel) tbl_cli_clis.getModel();
-        modelo.setNumRows(0);
-        ClienteDao cdao = new ClienteDao();
         
-        for(Cliente c: cdao.read()){
-            
-            modelo.addRow(new Object[]{
-                
-                c.getCpf(),
-                c.getNome(),
-                c.getEmail()
-            });
-        }
+        ClienteControl.getCliente((DefaultTableModel) tbl_cli_clis.getModel());
         
     }    
     
@@ -57,7 +43,7 @@ public class ClientesView extends javax.swing.JFrame {
                 c_cli_cpf.setEnabled(false);
                 c_cli_email.setEnabled(false);
                 btn_cli_novo.setEnabled(true);
-                btn_cli_editar.setEnabled(false);
+                btn_cli_atualizar.setEnabled(false);
                 btn_cli_excluir.setEnabled(true);
                 break;
             
@@ -68,7 +54,7 @@ public class ClientesView extends javax.swing.JFrame {
                 c_cli_cpf.setEnabled(true);
                 c_cli_email.setEnabled(true);
                 btn_cli_novo.setEnabled(false);
-                btn_cli_editar.setEnabled(false);
+                btn_cli_atualizar.setEnabled(false);
                 btn_cli_excluir.setEnabled(false);
                 break;
                 
@@ -79,8 +65,8 @@ public class ClientesView extends javax.swing.JFrame {
                 c_cli_cpf.setEnabled(true);
                 c_cli_email.setEnabled(true);
                 btn_cli_novo.setEnabled(true);
-                btn_cli_editar.setEnabled(true);
-                btn_cli_excluir.setEnabled(false);
+                btn_cli_atualizar.setEnabled(true);
+                btn_cli_excluir.setEnabled(true);
                 break;
                 
             case "Excluir":
@@ -90,7 +76,7 @@ public class ClientesView extends javax.swing.JFrame {
                 c_cli_cpf.setEnabled(false);
                 c_cli_email.setEnabled(false);
                 btn_cli_novo.setEnabled(true);
-                btn_cli_editar.setEnabled(false);
+                btn_cli_atualizar.setEnabled(false);
                 btn_cli_excluir.setEnabled(false);
                 break;
                 
@@ -101,7 +87,7 @@ public class ClientesView extends javax.swing.JFrame {
                 c_cli_cpf.setEnabled(false);
                 c_cli_email.setEnabled(false);
                 btn_cli_novo.setEnabled(true);
-                btn_cli_editar.setEnabled(true);
+                btn_cli_atualizar.setEnabled(true);
                 btn_cli_excluir.setEnabled(true);
                 break;
             default: System.out.println("Modo inválido");
@@ -134,7 +120,7 @@ public class ClientesView extends javax.swing.JFrame {
         c_cli_email = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_cli_clis = new javax.swing.JTable();
-        btn_cli_editar = new javax.swing.JButton();
+        btn_cli_atualizar = new javax.swing.JButton();
         btn_cli_excluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -213,10 +199,10 @@ public class ClientesView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbl_cli_clis);
 
-        btn_cli_editar.setText("Atualizar");
-        btn_cli_editar.addActionListener(new java.awt.event.ActionListener() {
+        btn_cli_atualizar.setText("Atualizar");
+        btn_cli_atualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cli_editarActionPerformed(evt);
+                btn_cli_atualizarActionPerformed(evt);
             }
         });
 
@@ -237,7 +223,7 @@ public class ClientesView extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(btn_cli_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_cli_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addComponent(btn_cli_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,10 +256,11 @@ public class ClientesView extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel16)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(c_cli_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +281,7 @@ public class ClientesView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_cli_excluir)
-                            .addComponent(btn_cli_editar))
+                            .addComponent(btn_cli_atualizar))
                         .addContainerGap())))
         );
 
@@ -321,14 +308,8 @@ public class ClientesView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cli_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_salvarActionPerformed
-        Cliente c = new Cliente();
-        ClienteDao dao = new ClienteDao();
-        c.setNome(c_cli_nome.getText());
-        c.setCpf(Long.parseLong(c_cli_cpf.getText()));
-        c.setEmail(c_cli_email.getText());
+        ClienteControl.salvarCliente(c_cli_cpf.getText(), c_cli_nome.getText(), c_cli_cpf.getText());
         
-        dao.create(c);
-
         modoCli = "Navegar";
         ManipulaInterfaceCli();
         limpaTextoCli();
@@ -346,32 +327,24 @@ public class ClientesView extends javax.swing.JFrame {
         ManipulaInterfaceCli();
     }//GEN-LAST:event_btn_cli_novoActionPerformed
 
-    private void btn_cli_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_editarActionPerformed
+    private void btn_cli_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_atualizarActionPerformed
         if(tbl_cli_clis.getSelectedRow() != -1) {
-
-            tbl_cli_clis.setValueAt(c_cli_cpf.getText(), tbl_cli_clis.getSelectedRow(), 0);
-            tbl_cli_clis.setValueAt(c_cli_nome.getText(), tbl_cli_clis.getSelectedRow(), 1);
-            tbl_cli_clis.setValueAt(c_cli_email.getText(), tbl_cli_clis.getSelectedRow(), 2);
-          
-            
+ 
+            ClienteControl.updateCliente(c_cli_cpf.getText(), c_cli_nome.getText(), c_cli_cpf.getText());
+            modoCli = "Navegar";
+            ManipulaInterfaceCli();
+            limpaTextoCli();
+            readJTable();         
         }
 
         modoCli = "Editar";
         ManipulaInterfaceCli();
-    }//GEN-LAST:event_btn_cli_editarActionPerformed
+    }//GEN-LAST:event_btn_cli_atualizarActionPerformed
 
     private void btn_cli_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cli_excluirActionPerformed
         if(tbl_cli_clis.getSelectedRow() != -1) {
-
-            Cliente c = new Cliente();
-            ClienteDao dao = new ClienteDao();
-
-            c.setNome((String) tbl_cli_clis.getValueAt(tbl_cli_clis.getSelectedRow(), 1));
-
-            dao.delete(c);
-
+            ClienteControl.deletarCliente(tbl_cli_clis.getValueAt(tbl_cli_clis.getSelectedRow(), 1).toString());
             readJTable();
-
         }
 
         modoCli = "Navegar";
@@ -443,7 +416,7 @@ public class ClientesView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cli_editar;
+    private javax.swing.JButton btn_cli_atualizar;
     private javax.swing.JButton btn_cli_excluir;
     private javax.swing.JButton btn_cli_novo;
     private javax.swing.JButton btn_cli_salvar;

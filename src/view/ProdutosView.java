@@ -5,14 +5,9 @@
  */
 package view;
 
-import java.util.ArrayList;
+import controller.ProdutoControl;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.bean.Administrador;
-import model.bean.Cliente;
-import model.bean.Produto;
-import model.dao.AdministradorDao;
-import model.dao.ProdutoDao;
 
 /**
  *
@@ -28,29 +23,14 @@ public class ProdutosView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         modoProd = "Navegar";
         ManipulaInterfaceProd();
-        
         DefaultTableModel modelo = (DefaultTableModel) tbl_prod_prods3.getModel();
         tbl_prod_prods3.setRowSorter(new TableRowSorter(modelo));
         readJTable();
     }
     
-    
-        public void readJTable() {
-        DefaultTableModel modelo = (DefaultTableModel) tbl_prod_prods3.getModel();
-        modelo.setNumRows(0);
-        ProdutoDao pdao = new ProdutoDao();
-        
-        for(Produto p: pdao.read()){
+    public void readJTable() {
             
-            modelo.addRow(new Object[]{
-                
-                p.getQuantidade(),
-                p.getNome()
-                
-                
-            });
-            
-        }
+        ProdutoControl.getProduto((DefaultTableModel) tbl_prod_prods3.getModel());
         
     }
     
@@ -63,7 +43,7 @@ public class ProdutosView extends javax.swing.JFrame {
                 c_prod_nome.setEnabled(false);
                 btn_prod_novo.setEnabled(true);
                 btn_prod_atualizar3.setEnabled(false);
-                btn_prod_excluir3.setEnabled(true);
+                btn_prod_excluir3.setEnabled(false);
                 break;
             
             case "Novo":
@@ -83,7 +63,7 @@ public class ProdutosView extends javax.swing.JFrame {
                 c_prod_nome.setEnabled(true);
                 btn_prod_novo.setEnabled(true);
                 btn_prod_atualizar3.setEnabled(true);
-                btn_prod_excluir3.setEnabled(false);
+                btn_prod_excluir3.setEnabled(true);
                 break;
                 
             case "Excluir":
@@ -140,11 +120,7 @@ public class ProdutosView extends javax.swing.JFrame {
 
         jLabel13.setText("Quantidade:");
 
-        c_prod_qtd.setText("1232132");
-
         jLabel14.setText("Nome:");
-
-        c_prod_nome.setText("Vinicius Monteiro Dias Filho");
 
         btn_prod_salvar.setText("Salvar");
         btn_prod_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -232,12 +208,12 @@ public class ProdutosView extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(c_prod_qtd)
                                 .addGap(50, 50, 50)))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(btn_prod_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
                                 .addComponent(btn_prod_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(c_prod_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(c_prod_nome)))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -281,13 +257,7 @@ public class ProdutosView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_prod_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_salvarActionPerformed
-        Produto p = new Produto();
-        ProdutoDao dao = new ProdutoDao();
-        p.setNome(c_prod_nome.getText());
-        p.setQuantidade(Integer.parseInt(c_prod_qtd.getText()));
-        
-        dao.create(p);
-
+        ProdutoControl.salvarProduto(c_prod_nome.getText(), Integer.parseInt(c_prod_qtd.getText()));
         modoProd = "Navegar";
         ManipulaInterfaceProd();
         limpaTextoProd();
@@ -301,26 +271,12 @@ public class ProdutosView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_prod_voltarActionPerformed
 
-    private void btn_prod_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_novoActionPerformed
-        modoProd = "Novo";
-        ManipulaInterfaceProd();
-    }//GEN-LAST:event_btn_prod_novoActionPerformed
-
     private void btn_prod_atualizar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_atualizar3ActionPerformed
         modoProd = "Editar";
         if(tbl_prod_prods3.getSelectedRow() != -1) {
 
-            Produto p = new Produto();
-            ProdutoDao dao = new ProdutoDao();
-
-            p.setNome(c_prod_nome.getText());
-            p.setQuantidade(Integer.parseInt(c_prod_qtd.getText()));
+            ProdutoControl.updateProduto(c_prod_nome.getText(), Integer.parseInt(c_prod_qtd.getText()));
             
-            p.setNome(c_prod_nome.getText());
-
-
-            dao.update(p);
-
             modoProd = "Navegar";
             ManipulaInterfaceProd();
             limpaTextoProd();
@@ -335,18 +291,14 @@ public class ProdutosView extends javax.swing.JFrame {
     private void btn_prod_excluir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_excluir3ActionPerformed
         if(tbl_prod_prods3.getSelectedRow() != -1) {
 
-            Produto p = new Produto();
-            ProdutoDao dao = new ProdutoDao();
-
-            p.setNome(tbl_prod_prods3.getValueAt(tbl_prod_prods3.getSelectedRow(), 1).toString());
-
-            dao.delete(p);
+            ProdutoControl.deletarProduto(tbl_prod_prods3.getValueAt(tbl_prod_prods3.getSelectedRow(), 1).toString());
 
             readJTable();
 
         }
         modoProd = "Navegar";
         ManipulaInterfaceProd();
+        limpaTextoProd ();
     }//GEN-LAST:event_btn_prod_excluir3ActionPerformed
 
     private void tbl_prod_prods3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_prod_prods3MouseClicked
@@ -369,6 +321,11 @@ public class ProdutosView extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_tbl_prod_prods3KeyReleased
+
+    private void btn_prod_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prod_novoActionPerformed
+        modoProd = "Novo";
+        ManipulaInterfaceProd();
+    }//GEN-LAST:event_btn_prod_novoActionPerformed
 
     /**
      * @param args the command line arguments

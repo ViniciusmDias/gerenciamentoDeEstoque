@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/viniciusdias/NetBeansProjects/gerenciamentoDeEstoque/src/view/ClientesView.java</file>
+            <file>file:/home/viniciusdias/NetBeansProjects/gerenciamentoDeEstoque/src/view/FuncView.java</file>
+            <file>file:/home/viniciusdias/NetBeansProjects/gerenciamentoDeEstoque/src/model/bean/Produto.java</file>
+            <file>file:/home/viniciusdias/NetBeansProjects/gerenciamentoDeEstoque/src/model/dao/ProdutoDao.java</file>
+            <file>file:/home/viniciusdias/NetBeansProjects/gerenciamentoDeEstoque/src/view/ProdutosView.java</file>
+            <file>file:/home/viniciusdias/NetBeansProjects/gerenciamentoDeEstoque/src/model/dao/ClienteDao.java</file>
+        </group>
     </open-files>
 </project-private>

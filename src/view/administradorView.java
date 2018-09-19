@@ -89,7 +89,7 @@ public class administradorView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        new FuncView().setVisible(true);
+        new FuncionarioView().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

@@ -9,37 +9,118 @@ package model.bean;
  *
  * @author viniciusdias
  */
-abstract class Funcionario {
-    public long Cpf;
-    public String Nome;
-    public String Cargo;   
-    public long Rg;
-    public String DataNasc;
-    public long Telefone;
-    public String Endereco;
-    public String Login;
-    public String Senha;
-    public long Salario;
-    
-    public abstract void getCpf();
-    public abstract void setCpf();
-    public abstract void getNome();
-    public abstract void setNome();
-    public abstract void getCargo();
-    public abstract void setCargo();
-    public abstract void getRg();
-    public abstract void setRg();
-    public abstract void getDataNasc();
-    public abstract void setDataNasc();
-    public abstract void getTelefone();
-    public abstract void setTelefone();
-    public abstract void getEndereco();
-    public abstract void setEndereco();
-    public abstract void getLogin();
-    public abstract void setLogin();
-    public abstract void getSenha();
-    public abstract void setSenha();
-    public abstract void getSalario();
-    public abstract void setSalario();
 
+
+public class Funcionario  {
+    private String Cpf;
+    private String Nome;
+    private String Cargo;   
+    private long Rg;
+    private String DataNasc;
+    private long Telefone;
+    private String Endereco;
+    private String Login;
+    private String Senha;
+    private long Salario;
+
+    public Funcionario() {
+    }
+
+    public Funcionario(String Cpf, String Nome, String Cargo, long Rg, String DataNasc,
+                        long Telefone, String Endereco, String Login, String Senha, long Salario) {
+        this.Cpf = Cpf;
+        this.Nome = Nome;
+        this.Cargo = Cargo;
+        this.Rg = Rg;
+        this.DataNasc = DataNasc;
+        this.Telefone = Telefone;
+        this.Endereco = Endereco;
+        this.Login = Login;
+        this.Senha = Senha;
+        this.Salario = Salario;
+    }
+
+    
+
+    public String getCpf() {
+        return Cpf;
+    }
+
+    public void setCpf(String Cpf) {
+        this.Cpf = Cpf;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String Nome) {
+        this.Nome = Nome;
+    }
+
+    public String getCargo() {
+        return Cargo;
+    }
+
+    public void setCargo(String Cargo) {
+        this.Cargo = Cargo;
+    }
+
+    public long getRg() {
+        return Rg;
+    }
+
+    public void setRg(long Rg) {
+        this.Rg = Rg;
+    }
+
+    public String getDataNasc() {
+        return DataNasc;
+    }
+
+    public void setDataNasc(String DataNasc) {
+        this.DataNasc = DataNasc;
+    }
+
+    public long getTelefone() {
+        return Telefone;
+    }
+
+    public void setTelefone(long Telefone) {
+        this.Telefone = Telefone;
+    }
+
+    public String getEndereco() {
+        return Endereco;
+    }
+
+    public void setEndereco(String Endereco) {
+        this.Endereco = Endereco;
+    }
+
+    public String getLogin() {
+        return Login;
+    }
+
+    public void setLogin(String Login) {
+        this.Login = Login;
+    }
+
+    public String getSenha() {
+        return Senha;
+    }
+
+    public void setSenha(String Senha) {
+        this.Senha = Senha;
+    }
+
+    public long getSalario() {
+        return Salario;
+    }
+
+    public void setSalario(long Salario) {
+        this.Salario = Salario;
+    }
+    
+    
 }

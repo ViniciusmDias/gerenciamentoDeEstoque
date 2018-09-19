@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.bean.Administrador;
+import model.bean.Funcionario;
 import model.bean.Cliente;
 
 /**
@@ -31,7 +31,7 @@ public class ClienteDao {
         
         try {
             stmt = con.prepareStatement("INSERT INTO Clientes (Cpf, Nome, Email)VALUES(?, ?, ?)");
-            stmt.setLong(1, c.getCpf());
+            stmt.setString(1, c.getCpf());
             stmt.setString(2, c.getNome());
             stmt.setString(3, c.getEmail());
             
@@ -61,7 +61,7 @@ public class ClienteDao {
                 
                 Cliente cliente = new Cliente();
                 
-                cliente.setCpf(rs.getLong("Cpf"));
+                cliente.setCpf(rs.getString("Cpf"));
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setEmail(rs.getString("Email"));
                 
@@ -84,7 +84,7 @@ public class ClienteDao {
         
         try {
             stmt = con.prepareStatement("UPDATE Clientes SET Cpf = ?, Nome = ?, Email = ? WHERE Nome = ?");
-            stmt.setLong(1, c.getCpf());
+            stmt.setString(1, c.getCpf());
             stmt.setString(2, c.getNome());
             stmt.setString(3, c.getEmail());
             

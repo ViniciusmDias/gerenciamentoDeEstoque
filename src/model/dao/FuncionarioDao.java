@@ -15,16 +15,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.bean.Administrador;
+import model.bean.Funcionario;
 import model.bean.Cliente;
 
 /**
  *
  * @author viniciusdias
  */
-public class AdministradorDao {
+public class FuncionarioDao {
     
-    public void create(Administrador a) {
+    public void create(Funcionario a) {
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -33,7 +33,7 @@ public class AdministradorDao {
         try {
             stmt = con.prepareStatement("INSERT INTO Administrador (Cpf, Nome, Cargo, Rg, DataNasc,"
                     + "Telefone, Endereco, Login, Senha, Salario)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setLong(1, a.getCpf());
+            stmt.setString(1, a.getCpf());
             stmt.setString(2, a.getNome());
             stmt.setString(3, a.getCargo());
             stmt.setLong(4, a.getRg());
@@ -49,19 +49,19 @@ public class AdministradorDao {
             JOptionPane.showMessageDialog(null, "Salvo com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar "+ex);
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
             
         }
     }
 
-    public List<Administrador> read(){
+    public List<Funcionario> read(){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<Administrador> adms = new ArrayList<>();
+        List<Funcionario> adms = new ArrayList<>();
         
         try {
             stmt = con.prepareStatement("SELECT * FROM Administrador");
@@ -69,7 +69,7 @@ public class AdministradorDao {
             
             while (rs.next()){
                 
-                Administrador adm = new Administrador();
+                Funcionario adm = new Funcionario();
                 
                 adm.setNome(rs.getString("Nome"));
                 adm.setCargo(rs.getString("Cargo"));
@@ -94,7 +94,7 @@ public class AdministradorDao {
         return adms;
         
     }
-    public void update(Administrador a) {
+    public void update(Funcionario a) {
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -102,7 +102,7 @@ public class AdministradorDao {
         try {
             stmt = con.prepareStatement("UPDATE Clientes SET Cpf = ?, Nome = ?, Cargo = ?, Rg = ?, "
                     + "DataNasc = ?, Telefone = ?, Endereco = ?, Login = ?, Senha = ?, Salario = ?, WHERE Nome = ?");
-            stmt.setLong(1, a.getCpf());
+            stmt.setString(1, a.getCpf());
             stmt.setString(2, a.getNome());
             stmt.setString(3, a.getCargo());
             stmt.setLong(4, a.getRg());
@@ -111,7 +111,7 @@ public class AdministradorDao {
             stmt.setString(7, a.getEndereco());
             stmt.setString(8, a.getLogin());
             stmt.setString(9, a.getSenha());
-            stmt.setFloat(10, a.getSalario());
+            stmt.setLong(10, a.getSalario());
             
             stmt.setString(11, a.getNome());
             
@@ -120,12 +120,12 @@ public class AdministradorDao {
             JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar "+ex);
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);   
         }
     }
-    public void delete(Administrador a) {
+    public void delete(Funcionario a) {
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -139,7 +139,7 @@ public class AdministradorDao {
             JOptionPane.showMessageDialog(null, "Excluido com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir "+ex);
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt);   
         }
@@ -168,7 +168,7 @@ public class AdministradorDao {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Senha incorreta "+ex);
-            Logger.getLogger(AdministradorDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);   
         }

@@ -5,12 +5,14 @@
  */
 package model.bean;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author viniciusdias
  */
 public class Produto {
-    
+   
     String Nome;
     int Quantidade;
     
@@ -37,5 +39,5 @@ public class Produto {
     public void setQuantidade(int Quantidade) {
         this.Quantidade = Quantidade;
     }
-    
+       
 }
