@@ -174,12 +174,13 @@ public class FuncionarioDao {
         return check;
         
     }
-    public boolean checkAdm(String Login, String Senha) {
+    public String checkAdm(String Login, String Senha) {
         
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean administrador = false;
+        String cargo = "";
         
         try {
             stmt = con.prepareStatement("SELECT cargo FROM Funcionario WHERE Login = ? and Senha = ?");
@@ -190,11 +191,8 @@ public class FuncionarioDao {
             rs = stmt.executeQuery();
             
             while (rs.next()) {
-                
-                if( rs.getString("cargo") == "Administrador") {
-                    administrador = true;
-                }
-                
+
+                cargo = rs.getString("Cargo");
                 
             }
             
@@ -206,7 +204,9 @@ public class FuncionarioDao {
             ConnectionFactory.closeConnection(con, stmt, rs);   
         }
         
-        return administrador;
+        return cargo;
+                
+        
     }
     
 }

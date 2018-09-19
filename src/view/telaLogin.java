@@ -128,6 +128,16 @@ public class telaLogin extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/door_out.png"))); // NOI18N
         jMenu3.setText("Sair");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenu3);
 
         jMenuBar1.add(jMenu1);
@@ -169,16 +179,15 @@ public class telaLogin extends javax.swing.JFrame {
         FuncionarioDao dao = new FuncionarioDao();
         
         if(dao.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))) {
-            if (dao.checkAdm(txtLogin.getText(), new String(txtSenha.getPassword()))) {
-                this.dispose();
-                new administradorView().setVisible(true);
-            } else {
-                this.dispose();
-                new atendenteView().setVisible(true);
-            }    
-                
-        } else { 
-            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos");
+                if (dao.checkAdm(txtLogin.getText(), new String(txtSenha.getPassword())) == "Administrador") {
+                    this.dispose();
+                    new atendenteView().setVisible(true);
+                } else {
+                    this.dispose();
+                    new atendenteView().setVisible(true);
+                }       
+            } else { 
+                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos");
             
         }
         
@@ -192,17 +201,32 @@ public class telaLogin extends javax.swing.JFrame {
 
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if(dao.checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))) {
-
-                new administradorView().setVisible(true);
-                this.dispose();
-
+                if (dao.checkAdm(txtLogin.getText(), new String(txtSenha.getPassword())) == "Administrador") {
+                    this.dispose();
+                    new administradorView().setVisible(true);
+                } else {
+                    this.dispose();
+                    new atendenteView().setVisible(true);
+                }       
             } else { 
-                JOptionPane.showMessageDialog(null, "Senha Incorreta");
+                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos");
             
-            }
+        }
             
         }
     }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        System.exit(0);
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments
