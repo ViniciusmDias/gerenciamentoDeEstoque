@@ -1,8 +1,11 @@
 # gerenciamentoDeEstoque
 
-Disciplina: Desenvolvimento de Sistemas Orientados a Objetos II (DSO2) 
+Disciplina: Desenvolvimento de Sistemas Orientados a Objetos II (DSO2).
+
 Trabalho 1.
+
 Desenvolvido em JAVA no netBeans.
+
 
 ## Requisitos da Aplicação
 
