@@ -1,0 +1,17 @@
+create database gde;
+
+create table Clientes (
+    cpf numeric(11), nome varchar(40), email varchar(30)  
+);
+
+create table Funcionario (
+    Cpf numeric(11), Nome varchar(40), Cargo varchar (20), 
+    DataNasc date, Telefone numeric(15), Login varchar (30), Senha varchar(30),
+    Salario int, Rg varchar(30), Endereco varchar(50)
+);
+
+create table Produto (
+    Quantidade int(10), Nome varchar(30)
+);
+
+

@@ -33,6 +33,7 @@ public class administradorView extends javax.swing.JFrame {
         jToggleButton5 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btn_func_voltar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -65,6 +66,13 @@ public class administradorView extends javax.swing.JFrame {
         jLabel1.setText("Painel de Administrador");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/server .png"))); // NOI18N
+
+        btn_func_voltar.setText("Voltar");
+        btn_func_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_func_voltarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/monitor.png"))); // NOI18N
         jMenu1.setText("Arquivo");
@@ -105,9 +113,15 @@ public class administradorView extends javax.swing.JFrame {
                     .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addGap(55, 55, 55))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_func_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,9 +135,11 @@ public class administradorView extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jToggleButton3))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jToggleButton5)
-                .addGap(31, 31, 31))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButton5)
+                    .addComponent(btn_func_voltar))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -154,6 +170,11 @@ public class administradorView extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void btn_func_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_func_voltarActionPerformed
+        new administradorView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_func_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +212,7 @@ public class administradorView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_func_voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;

@@ -89,11 +89,6 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="btn_prod_atualizar3" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="btn_prod_excluir3" min="-2" pref="100" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -110,16 +105,21 @@
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btn_prod_salvar" min="-2" pref="78" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Component id="btn_prod_voltar" min="-2" pref="76" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="c_prod_nome" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btn_prod_salvar" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="c_prod_nome" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane5" alignment="0" min="-2" pref="399" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btn_prod_atualizar3" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_prod_excluir3" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="btn_prod_voltar" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane5" alignment="0" min="-2" pref="399" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
@@ -142,7 +142,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_prod_novo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_prod_salvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_prod_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jScrollPane5" min="-2" pref="170" max="-2" attributes="0"/>
@@ -150,6 +149,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_prod_excluir3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_prod_atualizar3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_prod_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
               </Group>
