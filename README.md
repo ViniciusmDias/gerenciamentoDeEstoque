@@ -23,3 +23,7 @@ Implemente componentes que sejam responsáveis por executar as ações descritas
 A persistência dos dados da aplicação pode ser feita em memória, arquivo ou banco de dados. Os componentes desenvolvidos devem estar em pacotes ou projetos separados do código da interface gráfica da aplicação.
 
 Um usuário administrador padrão deve ser criado para que possa ser feito o primeiro acesso ao sistema (Sugestão: usuário: admin, senha: admin).
+
+
+![alt text](https://github.com/ViniciusmDias/gerenciamentoDeEstoque/tree/master/TelasGDE/login.jpeg)
+
