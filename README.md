@@ -1,5 +1,9 @@
 # gerenciamentoDeEstoque
 
+Disciplina: Desenvolvimento de Sistemas Orientados a Objetos II (DSO2) 
+Trabalho 1.
+Desenvolvido em JAVA no netBeans.
+
 ## Requisitos da Aplicação
 
 A aplicação a ser desenvolvida deve permitir a execução das seguintes ações através de sua interface gráfica:
